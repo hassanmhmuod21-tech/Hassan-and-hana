@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Mido & Dina | قصة حبنا 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --primary-color: #e75480;
+      --glass-bg: rgba(255, 255, 255, 0.15);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #2c1e1e 0%, #121212 100%);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* شاشة كلمة السر - تشبه الفيديو */
+    #lock-screen {
+      position: fixed;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1000') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.8s ease;
+    }
+
+    #lock-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+    }
+
+    .login-card {
+      position: relative;
+      background: var(--glass-bg);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      width: 85%;
+      max-width: 350px;
+    }
+
+    .login-card h2 { margin-top: 0; font-size: 24px; }
+    
+    .login-card input {
+      width: 100%;
+      padding: 12px;
+      margin: 20px 0;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      text-align: center;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .login-card button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: #ff0055;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    /* محتوى الصفحة الرئيسي */
+    #main-content {
+      display: none; /* مخفي حتى إدخال الكود */
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .heart {
+      font-size: 60px;
+      animation: pulse 1.5s infinite;
+      margin: 20px 0;
+      color: #ff0055;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    audio {
+      margin-top: 20px;
+      filter: invert(1);
+      width: 280px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="lock-screen">
+  <div class="login-card">
+    <div style="font-size: 40px; margin-bottom: 10px;">🔐</div>
+    <h2>Mido & Dalia</h2>
+    <input type="password" id="passwordInput" placeholder="كلمة السر..">
+    <button onclick="checkPassword()">دخول</button>
+    <p id="error-msg" style="color: #ffda79; font-size: 14px; display: none; margin-top: 10px;">كلمة السر غلط يا روحي! ❌</p>
+  </div>
+</div>
+
+<div id="main-content">
+  <audio id="bgMusic" loop>
+    <source src="Albumaty.Com_amrw_dyab_hbیbty_mlak.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="section">
+    <h1>إلى أغلى إنسان في حياتي 💕</h1>
+    <div class="heart">❤️</div>
+    <p>
+      الصفحة دي معمولة مخصوص علشانك…<br>
+      علشان أقولك إنك نعمة كبيرة في حياتي.
+    </p>
+    <p style="font-size: 14px;">🎵 الآن تستمع إلى: حبيبتي ملاك</p>
+  </div>
+
+  <div class="section">
+    <h2>عارفة إيه أكتر حاجة؟</h2>
+    <div class="heart">💞</div>
+    <p>
+      "أنا وهي وزيها مين.. دي أجمل حاجة في الدنيا تشوفها العين.." 🤍
+    </p>
+  </div>
+</div>
+
+<script>
+  function checkPassword() {
+    const pass = document.getElementById('passwordInput').value;
+    const correctPass = "762003"; // يمكنك تغيير كلمة السر من هنا
+    const music = document.getElementById('bgMusic');
+
+    if (pass === correctPass) {
+      // إخفاء شاشة القفل
+      document.getElementById('lock-screen').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('lock-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('main-content').style.opacity = '1';
+        }, 50);
+        
+        // تشغيل الموسيقى تلقائياً بعد الضغط على دخول
+        music.play().catch(error => {
+          console.log("التشغيل التلقائي يحتاج تفاعل أولاً، ولكن الضغط على الزر كافٍ.");
+        });
+      }, 800);
+    } else {
+      document.getElementById('error-msg').style.display = 'block';
+    }
+  }
+
+  // السماح بالدخول عند الضغط على زر Enter
+  document.getElementById('passwordInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      checkPassword();
+    }
+  });
+</script>
+
+</body>
+</html>
