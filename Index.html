@@ -3,61 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mido & Dina - Our Story</title>
+    <title>Mido & Dina | قصة حبنا</title>
     <style>
-        :root {
-            --primary-color: #ff2d55;
-            --bg-glass: rgba(255, 255, 255, 0.1);
-            --text-color: #ffffff;
-        }
-
+        /* تنسيقات الصفحة العامة */
         body {
-            margin: 0;
-            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* صورة الخلفية */
-            background-size: cover;
-            background-attachment: fixed;
-            color: var(--text-color);
+            margin: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* حاوية العداد */
-        .header-card {
-            background: var(--bg-glass);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            justify-content: center;
             padding: 20px;
-            margin-top: 50px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .heart-icon {
-            color: var(--primary-color);
+        .main-container {
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        /* العداد التنازلي */
+        .header-section {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .names {
             font-size: 24px;
+            margin-bottom: 15px;
+            color: #ff4d6d;
         }
 
         .timer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            margin-top: 20px;
         }
 
-        .timer-item {
-            background: rgba(0,0,0,0.3);
-            padding: 10px;
-            border-radius: 10px;
+        .time-box {
+            background: #2d2d2d;
+            padding: 10px 5px;
+            border-radius: 12px;
         }
 
-        .timer-item span {
+        .time-box span {
             display: block;
-            font-size: 20px;
-            font-weight:
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .time-box p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        /* مشغل الموسيقى */
+        .music-card {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .music-card p { margin-bottom: 10px; font-size: 14px; }
+        audio { width: 100%; height: 40px; }
+
+        /* قائمة الذكريات */
+        .memory-card {
+            background: #1e1e1e;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            text-align: right;
+            transition: 0.3s;
+        }
+
+        .memory-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            filter: grayscale(30%);
+        }
+
+        .memory-content {
+            padding: 15px;
+        }
+
+        .memory-date {
+            background: #ff4d6d;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .memory-title {
+            font-size: 18px;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .memory-desc {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* رسالة الحب النهائية */
+        .love-note {
+            background: linear-gradient(135deg, #ff4d6d, #c9184a);
+            padding: 25px;
+            border-radius: 20px;
+            line-height: 1.6;
+            font-style: italic;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="header-section">
+            <div class="names">❤️ Mido & Dina</div>
+            <div class="timer-grid" id="countdown">
+                <div class="time-box"><span id="days">00</span><p>يوم</p></div>
+                <div class="time-box"><span id="hours">00</span><p>ساعة</p></div>
+                <div class="time-box"><span id="minutes">00</span><p>دقيقة</p></div>
+                <div class="time-box"><span id="seconds">00</span><p>ثانية</p></div>
+            </div>
+        </div>
+
+        <div class="music-card">
+            <p>أغنيتنا المفضلة 🎵</p>
+            <audio controls>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <div class="memories-list">
+            
+            <div class="memory-card">
+                <img src="https://images.unsplash.com/photo-1518136247453-74e7b5265980?w=500" alt="ذكرى">
+                <div class="memory-content">
+                    <div class="memory-date">2025-01-01</div>
+                    <div class="memory-title">أول مقابلة لنا</div>
+                    <p class="memory-desc">في هذا اليوم تغيرت حياتي للأبد عندما رأيت عينيكِ لأول مرة.</p>
+                </div>
+            </div>
+
+            <div class="memory-card">
+                <img src="https://images.unsplash.com/photo-1516589174184-c68526614ae6?w=500" alt="ذكرى">
+                <div class="memory-content">
+                    <div class="memory-date">2025-06-11</div>
+                    <div class="memory-title">يوم خطوبتنا 💍</div>
+                    <p class="memory-desc">أجمل خطوة اتخذناها سوياً، وبداية طريقنا الرسمي.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="love-note">
+            "دفء جسمك وروحك جعلاني أعيش وأتحمل كل شعور بالبرد، لأن حبك يضيء عالمي مثل النجوم، وحبك أضاء وجهي بابتسامة لا تفارقه."
+        </div>
+
+    </div>
+
+    <script>
+        // تحديد تاريخ البداية (مثلاً تاريخ أول لقاء)
+        const startDate = new Date("January 1, 2025 00:00:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+        }
+
+        // تحديث العداد كل ثانية
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
